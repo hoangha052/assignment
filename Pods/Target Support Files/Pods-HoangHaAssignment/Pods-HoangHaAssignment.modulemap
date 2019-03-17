@@ -1,0 +1,6 @@
+framework module Pods_HoangHaAssignment {
+  umbrella header "Pods-HoangHaAssignment-umbrella.h"
+
+  export *
+  module * { export * }
+}
