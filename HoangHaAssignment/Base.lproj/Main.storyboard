@@ -50,7 +50,7 @@
                                 <rect key="frame" x="0.0" y="74" width="375" height="503"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="XHY-6d-TtO" style="IBUITableViewCellStyleDefault" id="Pxv-LO-ZuI">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Cell" textLabel="XHY-6d-TtO" style="IBUITableViewCellStyleDefault" id="Pxv-LO-ZuI">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Pxv-LO-ZuI" id="Jxn-gd-6mv">
@@ -83,6 +83,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Tricount" id="A6l-5v-dtk"/>
                     <connections>
+                        <outlet property="tableView" destination="eOD-A0-uDj" id="0pG-8Y-ZgI"/>
                         <segue destination="7j7-ba-R9y" kind="push" id="83z-4d-Fh6"/>
                     </connections>
                 </viewController>

@@ -66,14 +66,7 @@ class CreateTriCountViewController: UIViewController {
                 guard self != nil else { return }
                 cell.textLabel?.text = element.name
         }
-            .disposed(by: disposeBag)
-        
-//        userTableView.rx.itemSelected
-//            .subscribe(onNext: { [weak self] indexPath in
-//                guard let self = self else { return }
-//                this.showAlert(message: "select row \(indexPath.row)")
-//            })
-//            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)        
     }
     
     private func setupNavigationButton() {

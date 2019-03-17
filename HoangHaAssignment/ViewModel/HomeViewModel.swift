@@ -7,7 +7,15 @@
 //
 
 import UIKit
+import RxSwift
+import RealmSwift
+
 
 class HomeViewModel: NSObject {
 
+    var tricounts = Variable<[Tricount]>([])
+    
+    func loadTricountData() {
+        tricounts.value = Tricount.loadData()
+    }
 }
