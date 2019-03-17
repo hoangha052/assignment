@@ -8,6 +8,7 @@ target 'HoangHaAssignment' do
   # Pods for HoangHaAssignment
     pod 'RxSwift',    '~> 4.0'
     pod 'RxCocoa',    '~> 4.0'
+    pod 'RxRealm'
 
   target 'HoangHaAssignmentTests' do
     inherit! :search_paths
