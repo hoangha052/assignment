@@ -7,7 +7,48 @@
 //
 
 import UIKit
+import RxCocoa
+import RxSwift
+import RealmSwift
 
-class CreateTricountViewModel: NSObject {
+class CreateTricountViewModel: NSObject{
 
+    var isSuccess: Variable<Bool> = Variable(false)
+    var tricountTitle = Variable<String>("")
+    var userName = Variable<String>("")
+    var members = Variable<[User]>([])
+    
+    lazy private(set) var userNameIsValid: Observable<Bool> = self.userName
+        .asObservable()
+        .map { name in
+        return !name.isEmpty
+    }
+    
+    var dataObservable: Observable<[User]> {
+        return members.asObservable()
+    }
+    
+    func addNewUser() {
+        let newUser = User(value: ["name": userName.value])
+        members.value.append(newUser)
+        userName.value = ""
+    }
+    
+    func userNameForItem(at indexPath: IndexPath) -> String {
+        guard indexPath.row >= 0 && indexPath.row < members.value.count else { return "" }
+        return members.value[indexPath.row].name
+    }
+    
+    func createTriCount() {
+        guard !tricountTitle.value.isEmpty, members.value.count > 0 else { return }
+        let newTricount = Tricount()
+        newTricount.title = tricountTitle.value
+        newTricount.members.append(objectsIn: members.value)
+        let realm = try! Realm()
+        try! realm.write {
+            realm.add(newTricount)
+            self.isSuccess.value = true
+        }
+    }
+    
 }

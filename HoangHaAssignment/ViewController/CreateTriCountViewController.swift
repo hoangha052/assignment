@@ -7,14 +7,73 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class CreateTriCountViewController: UIViewController {
-
+    @IBOutlet weak var titleTextField: UITextField!
+    @IBOutlet weak var nameTextField: UITextField!
+    @IBOutlet weak var addButton: UIButton!
+    @IBOutlet weak var userTableView: UITableView!
+    
+    var disposeBag = DisposeBag()
+    let viewModel = CreateTricountViewModel()
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
         self.setupNavigationButton()
+        self.bindingView()
+    }
+    
+    private func bindingView() {
+        viewModel.isSuccess
+            .asObservable()
+            .skip(1)
+            .subscribe(onNext: { [weak self] success in
+                guard let self = self else { return }
+                if success {
+                    self.navigationController?.popViewController(animated: true)
+                }
+            }, onError: nil, onCompleted: nil, onDisposed: nil)
+            .disposed(by: disposeBag)
+        
+        titleTextField.rx.text
+            .orEmpty
+            .bind(to: viewModel.tricountTitle)
+            .disposed(by: disposeBag)
+        
+        nameTextField.rx.text
+            .orEmpty
+            .bind(to: viewModel.userName)
+            .disposed(by: disposeBag)
+        
+        viewModel.userNameIsValid
+            .bind(to: addButton.rx.isEnabled)
+            .disposed(by: disposeBag)
+        
+        addButton.rx.tap
+            .bind(onNext: viewModel.addNewUser)
+            .disposed(by: disposeBag)
+        
+        viewModel.userName.asObservable()
+            .subscribe(onNext: { [weak self] (text) in
+                guard let self = self else { return }
+                self.nameTextField.text = text
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.dataObservable
+            .bind(to: userTableView.rx.items(cellIdentifier: "MemberCell", cellType: UITableViewCell.self)) { [weak self] (row, element, cell) in
+                guard self != nil else { return }
+                cell.textLabel?.text = element.name
+        }
+            .disposed(by: disposeBag)
+        
+//        userTableView.rx.itemSelected
+//            .subscribe(onNext: { [weak self] indexPath in
+//                guard let self = self else { return }
+//                this.showAlert(message: "select row \(indexPath.row)")
+//            })
+//            .addDisposableTo(disposeBag)
     }
     
     private func setupNavigationButton() {
@@ -22,17 +81,6 @@ class CreateTriCountViewController: UIViewController {
     }
     
     @objc private func savePressed() {
-        self.navigationController?.popViewController(animated: true)
+        viewModel.createTriCount()
     }
-
-    /*
-    // MARK: - Navigation t  
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

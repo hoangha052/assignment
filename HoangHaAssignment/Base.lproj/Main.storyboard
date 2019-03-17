@@ -318,7 +318,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7dM-Pa-0C6">
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7dM-Pa-0C6">
                                 <rect key="frame" x="274" y="185" width="51" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="51" id="OSy-jf-4wj"/>
@@ -332,15 +332,15 @@
                                 <rect key="frame" x="0.0" y="225" width="375" height="442"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="XgW-tV-uad" style="IBUITableViewCellStyleDefault" id="h6X-hA-Wms">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="MemberCell" textLabel="XgW-tV-uad" style="IBUITableViewCellStyleDefault" id="h6X-hA-Wms">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="h6X-hA-Wms" id="TAf-I9-gD3">
-                                            <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="XgW-tV-uad">
-                                                    <rect key="frame" x="15" y="0.0" width="325" height="43.5"/>
+                                                    <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -374,6 +374,12 @@
                     <navigationItem key="navigationItem" title="New TripCount" id="DdR-6H-Bfh">
                         <barButtonItem key="backBarButtonItem" title="Back" id="hcp-CC-da7"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="addButton" destination="7dM-Pa-0C6" id="pc0-nM-dr6"/>
+                        <outlet property="nameTextField" destination="Pzd-yw-COb" id="iaI-SZ-a5C"/>
+                        <outlet property="titleTextField" destination="V9t-dq-lxM" id="Fuj-nj-oMk"/>
+                        <outlet property="userTableView" destination="osX-5v-Tda" id="nPG-l1-ldV"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WuY-H3-Ol7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

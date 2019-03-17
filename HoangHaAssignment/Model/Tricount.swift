@@ -12,7 +12,9 @@ import RealmSwift
 @objcMembers
 class Tricount: Object {
     dynamic var title: String = ""
-    dynamic var members = List<User>()
-    dynamic var expenses = List<Expense>()
+    let members = List<User>()
+    let expenses = List<Expense>()
+    
+    
 }
 
