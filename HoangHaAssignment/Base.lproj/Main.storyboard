@@ -94,7 +94,7 @@
         <!--Members-->
         <scene sceneID="sdw-a9-HR8">
             <objects>
-                <viewController id="fTI-wE-yjB" customClass="MemberViewController" customModule="HoangHaAssignment" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="fTI-wE-yjB" customClass="MembersViewController" customModule="HoangHaAssignment" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="82g-V4-lyR">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -103,7 +103,7 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="j1M-Kf-tPL" style="IBUITableViewCellStyleDefault" id="Jza-3D-diD">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Cell" textLabel="j1M-Kf-tPL" style="IBUITableViewCellStyleDefault" id="Jza-3D-diD">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Jza-3D-diD" id="Seb-uI-HUH">
@@ -134,6 +134,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Members" id="KXu-hC-cCh"/>
                     <connections>
+                        <outlet property="tableView" destination="GIA-yH-1Qe" id="2tz-1I-VQK"/>
                         <segue destination="F4Y-hx-7kq" kind="push" id="RRD-qX-aju"/>
                     </connections>
                 </viewController>
@@ -157,9 +158,6 @@
                                     <constraint firstAttribute="height" constant="30" id="o0c-2K-NME"/>
                                 </constraints>
                                 <state key="normal" title="Members"/>
-                                <connections>
-                                    <segue destination="fTI-wE-yjB" kind="push" id="bZ6-rq-6ft"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BgY-cb-WwF">
                                 <rect key="frame" x="206" y="587" width="119" height="30"/>
@@ -169,9 +167,6 @@
                                     <constraint firstAttribute="height" constant="30" id="p9D-Os-5zX"/>
                                 </constraints>
                                 <state key="normal" title="Balances"/>
-                                <connections>
-                                    <segue destination="d94-Ji-4F3" kind="push" id="jdD-X2-db2"/>
-                                </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="R3F-0n-hTW">
                                 <rect key="frame" x="0.0" y="64" width="375" height="503"/>
@@ -219,8 +214,12 @@
                     </view>
                     <navigationItem key="navigationItem" title="Expenses" id="Bub-PM-PAs"/>
                     <connections>
+                        <outlet property="balanceButton" destination="BgY-cb-WwF" id="522-k3-BUn"/>
+                        <outlet property="memberButton" destination="1Yw-nH-86c" id="QcA-WC-hd7"/>
                         <outlet property="tableView" destination="R3F-0n-hTW" id="jLT-kN-bw8"/>
                         <segue destination="CnD-h6-0Bh" kind="push" identifier="createExpenseSegue" id="8LG-FP-ksg"/>
+                        <segue destination="fTI-wE-yjB" kind="push" identifier="showMembersSegue" id="AdJ-WR-vHv"/>
+                        <segue destination="d94-Ji-4F3" kind="push" identifier="showBalanceSegue" id="5My-33-zOu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K3U-7a-2jO" userLabel="First Responder" sceneMemberID="firstResponder"/>

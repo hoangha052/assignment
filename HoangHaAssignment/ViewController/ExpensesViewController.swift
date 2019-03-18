@@ -12,6 +12,8 @@ import RxSwift
 
 class ExpensesViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var memberButton: UIButton!
+    @IBOutlet weak var balanceButton: UIButton!
     
     var viewModel: ExpensesViewModel!
     var disposeBag = DisposeBag()
@@ -19,12 +21,30 @@ class ExpensesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupNavigationButton()
+        self.bindingView()
         self.bindingViewModel()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         viewModel.loadExpenseData()
+    }
+    
+    private func bindingView() {
+        memberButton.rx.tap
+            .subscribe(onNext: { [weak self] (_) in
+                guard let self = self else { return }
+                self.performSegue(withIdentifier: "showMembersSegue", sender: self.viewModel.tricount)
+            })
+            .disposed(by: disposeBag)
+        
+        balanceButton.rx.tap
+            .subscribe(onNext: { [weak self] (_) in
+                guard let self = self else { return }
+                self.performSegue(withIdentifier: "showBalanceSegue", sender: self.viewModel.tricount)
+            })
+            .disposed(by: disposeBag)
+    
     }
     
     private func bindingViewModel() {
@@ -52,14 +72,19 @@ class ExpensesViewController: UIViewController {
     @objc private func createExpense() {
         self.performSegue(withIdentifier: "createExpenseSegue", sender: nil)
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    
+     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "tricountDetailSegue" {
+            let viewController = segue.destination as! ExpensesViewController
+            viewController.viewModel = ExpensesViewModel()
+            viewController.viewModel.tricount = sender as? Tricount
+        } else if segue.identifier == "showMembersSegue" {
+            let viewController = segue.destination as! MembersViewController
+            viewController.viewModel = MemberViewModel()
+            viewController.viewModel.tricount = sender as? Tricount
+            
+        }
     }
-    */
 
 }
