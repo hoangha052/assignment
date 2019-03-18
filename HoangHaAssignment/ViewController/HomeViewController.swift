@@ -18,7 +18,6 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         bindingViewModel()
     }
     
@@ -26,7 +25,15 @@ class HomeViewController: UIViewController {
         super.viewWillAppear(animated)
         viewModel.loadTricountData()
     }
-
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "tricountDetailSegue" {
+            let viewController = segue.destination as! ExpensesViewController
+            viewController.viewModel = ExpensesViewModel()
+            viewController.viewModel.tricount = sender as? Tricount
+        }
+    }
+    
     private func bindingViewModel() {
         viewModel.tricounts.asObservable()
             .bind(to: tableView.rx.items(cellIdentifier: "Cell", cellType: UITableViewCell.self)) { [weak self] (row, element, cell) in
@@ -38,9 +45,9 @@ class HomeViewController: UIViewController {
         tableView.rx.itemSelected
             .subscribe(onNext: { [weak self] indexPath in
                 guard let self = self else { return }
-                
+                self.performSegue(withIdentifier: "tricountDetailSegue", sender: self.viewModel.tricounts.value[indexPath.row])
             })
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
     }
     
 }

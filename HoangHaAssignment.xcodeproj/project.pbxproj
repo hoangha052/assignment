@@ -20,7 +20,7 @@
 		67984349223D3EEC006BC4B4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67984347223D3EEC006BC4B4 /* LaunchScreen.storyboard */; };
 		67984354223D3EEC006BC4B4 /* HoangHaAssignmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67984353223D3EEC006BC4B4 /* HoangHaAssignmentTests.swift */; };
 		67E405AA223E22770047D61C /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E405A9223E22770047D61C /* HomeViewModel.swift */; };
-		67E405AC223E22900047D61C /* ExpemsesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E405AB223E22900047D61C /* ExpemsesViewModel.swift */; };
+		67E405AC223E22900047D61C /* ExpensesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E405AB223E22900047D61C /* ExpensesViewModel.swift */; };
 		67E405AE223E22CD0047D61C /* ExpenseDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E405AD223E22CD0047D61C /* ExpenseDetailViewModel.swift */; };
 		67E405B0223E22E20047D61C /* BalanceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E405AF223E22E20047D61C /* BalanceViewModel.swift */; };
 		67E405B2223E23010047D61C /* CreateTricountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E405B1223E23010047D61C /* CreateTricountViewModel.swift */; };
@@ -67,7 +67,7 @@
 		67984353223D3EEC006BC4B4 /* HoangHaAssignmentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoangHaAssignmentTests.swift; sourceTree = "<group>"; };
 		67984355223D3EEC006BC4B4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		67E405A9223E22770047D61C /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
-		67E405AB223E22900047D61C /* ExpemsesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpemsesViewModel.swift; sourceTree = "<group>"; };
+		67E405AB223E22900047D61C /* ExpensesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesViewModel.swift; sourceTree = "<group>"; };
 		67E405AD223E22CD0047D61C /* ExpenseDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseDetailViewModel.swift; sourceTree = "<group>"; };
 		67E405AF223E22E20047D61C /* BalanceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceViewModel.swift; sourceTree = "<group>"; };
 		67E405B1223E23010047D61C /* CreateTricountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTricountViewModel.swift; sourceTree = "<group>"; };
@@ -166,7 +166,7 @@
 			isa = PBXGroup;
 			children = (
 				67E405A9223E22770047D61C /* HomeViewModel.swift */,
-				67E405AB223E22900047D61C /* ExpemsesViewModel.swift */,
+				67E405AB223E22900047D61C /* ExpensesViewModel.swift */,
 				67E405AD223E22CD0047D61C /* ExpenseDetailViewModel.swift */,
 				67E405AF223E22E20047D61C /* BalanceViewModel.swift */,
 				67E405B1223E23010047D61C /* CreateTricountViewModel.swift */,
@@ -408,7 +408,7 @@
 				67E405B4223E23160047D61C /* MemberViewModel.swift in Sources */,
 				67E405B9223E2BEB0047D61C /* User.swift in Sources */,
 				67E405AA223E22770047D61C /* HomeViewModel.swift in Sources */,
-				67E405AC223E22900047D61C /* ExpemsesViewModel.swift in Sources */,
+				67E405AC223E22900047D61C /* ExpensesViewModel.swift in Sources */,
 				67984341223D3EEB006BC4B4 /* HomeViewController.swift in Sources */,
 				67E405BF223E2E030047D61C /* Transaction.swift in Sources */,
 				67E405AE223E22CD0047D61C /* ExpenseDetailViewModel.swift in Sources */,
