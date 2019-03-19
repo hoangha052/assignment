@@ -21,4 +21,8 @@ class Tricount: Object {
         return realm.objects(self).compactMap({ $0 })
     }
     
+    override class func primaryKey() -> String {
+        return "title"
+    }
+    
 }

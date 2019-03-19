@@ -11,10 +11,9 @@ import RealmSwift
 
 @objcMembers
 class Expense: Object {
-
     dynamic var title: String = ""
     dynamic var amount: Double = 0
     dynamic var date: Date = Date()
-    dynamic var paidBy: User!
+    dynamic var paidBy: String = ""
     dynamic var transactions = List<Transaction>()
 }

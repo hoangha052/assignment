@@ -52,7 +52,7 @@ class ExpensesViewController: UIViewController {
             .bind(to: tableView.rx.items(cellIdentifier: "Cell", cellType: UITableViewCell.self)) { [weak self] (row, element, cell) in
                 guard self != nil else { return }
                 cell.textLabel?.text = element.title
-                cell.detailTextLabel?.text = "PaidBy " + element.paidBy.name  + "-\(element.amount)"
+                cell.detailTextLabel?.text = "PaidBy " + element.paidBy  + "-\(element.amount)"
             }
             .disposed(by: disposeBag)
         
@@ -70,14 +70,14 @@ class ExpensesViewController: UIViewController {
     }
     
     @objc private func createExpense() {
-        self.performSegue(withIdentifier: "createExpenseSegue", sender: nil)
+        self.performSegue(withIdentifier: "createExpenseSegue", sender: self.viewModel.tricount)
     }
     
      // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "tricountDetailSegue" {
-            let viewController = segue.destination as! ExpensesViewController
-            viewController.viewModel = ExpensesViewModel()
+        if segue.identifier == "createExpenseSegue" {
+            let viewController = segue.destination as! ExpenseDetailViewController
+            viewController.viewModel = ExpenseDetailViewModel()
             viewController.viewModel.tricount = sender as? Tricount
         } else if segue.identifier == "showMembersSegue" {
             let viewController = segue.destination as! MembersViewController

@@ -13,6 +13,4 @@ import RealmSwift
 class Transaction: Object {
     dynamic var userName: String = ""
     dynamic var amount: Double = 0
-    dynamic var date: Date = Date()
-    dynamic var title: String = ""
 }
