@@ -25,20 +25,39 @@ class ExpenseDetailViewModel: NSObject {
     var transactionsObservable = Variable<[Transaction]>([])
     
     func addNewTransaction() {
-        let transaction = Transaction()
-        transaction.userName = transactionUserName.value
-        transaction.amount = amount.value
-        transactions.append(transaction)
-        transactionsObservable.value.append(transaction)
+        var transaction: Transaction
+        if let index = transactions.firstIndex(where: { (item) -> Bool in
+            return item.userName == transactionUserName.value
+        }) {
+            transaction = transactions[index]
+            transaction.amount = amount.value
+            reloadTransactions()
+        } else {
+            transaction = Transaction()
+            transaction.userName = transactionUserName.value
+            transaction.amount = amount.value
+            transactions.append(transaction)
+            transactionsObservable.value.append(transaction)
+        }
+        totalAmount.value = self.getTotalAmount()
     }
     
+    func reloadTransactions() {
+        transactionsObservable.value = []
+        transactionsObservable.value.append(contentsOf: transactions)
+    }
     
+    func resetTransaction() {
+        transactionUserName.value = ""
+        amount.value = 0
+    }
     
     func creatNewExpense() {
+        guard !expenseTitle.value.isEmpty, totalAmount.value != 0, !paidBy.value.isEmpty else { return }
         saveTransaction()
         let expense = Expense()
         expense.title = expenseTitle.value
-        expense.amount = self.getTotalAmount()
+        expense.amount = totalAmount.value
         expense.date = date.value
         expense.paidBy = paidBy.value
         expense.transactions.append(objectsIn: transactions)
@@ -46,6 +65,7 @@ class ExpenseDetailViewModel: NSObject {
         let realm = try! Realm()
         try! realm.write {
             realm.add(expense)
+            tricount?.expenses.append(expense)
             self.isSuccess.value = true
         }
     }
@@ -71,23 +91,4 @@ class ExpenseDetailViewModel: NSObject {
     func getMemberList() -> [User] {
         return tricount?.members.compactMap({ $0 }) ?? []
     }
-    
-//
-//    func userNameForItem(at indexPath: IndexPath) -> String {
-//        guard indexPath.row >= 0 && indexPath.row < members.value.count else { return "" }
-//        return members.value[indexPath.row].name
-//    }
-//
-//    func createTriCount() {
-//        guard !tricountTitle.value.isEmpty, members.value.count > 0 else { return }
-//        let newTricount = Tricount()
-//        newTricount.title = tricountTitle.value
-//        newTricount.members.append(objectsIn: members.value)
-//        let realm = try! Realm()
-//        try! realm.write {
-//            realm.add(newTricount)
-//            self.isSuccess.value = true
-//        }
-//    }
-
 }

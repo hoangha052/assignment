@@ -76,12 +76,18 @@ class ExpenseDetailViewController: UIViewController {
             }
             .disposed(by: disposeBag)
         
+        titleTextField.rx.text
+            .orEmpty
+            .bind(to: viewModel.expenseTitle)
+            .disposed(by: disposeBag)
+        
         moneyTextField.rx.text
             .orEmpty
             .subscribe(onNext: { text in
                 self.viewModel.amount.value = Double(text) ?? 0
             })
             .disposed(by: disposeBag)
+        
 
         let userNameValidation =
             nameTextField.rx.text
@@ -108,10 +114,24 @@ class ExpenseDetailViewController: UIViewController {
         }).subscribe(onNext: { [weak self] in
             guard let self = self else { return }
             self.viewModel.addNewTransaction()
-        }).disposed(by: disposeBag)
+            self.viewModel.resetTransaction()
+            self.addButton.isEnabled = false
+            },onError: nil, onCompleted: nil, onDisposed: nil)
+            .disposed(by: disposeBag)
     }
     
     private func bindingViewModel() {
+        viewModel.isSuccess
+            .asObservable()
+            .skip(1)
+            .subscribe(onNext: { [weak self] success in
+                guard let self = self else { return }
+                if success {
+                    self.navigationController?.popViewController(animated: true)
+                }
+                }, onError: nil, onCompleted: nil, onDisposed: nil)
+            .disposed(by: disposeBag)
+        
         viewModel.date.asObservable()
             .subscribe(onNext: { [weak self] date in
                 guard let self = self else { return }
@@ -133,11 +153,28 @@ class ExpenseDetailViewController: UIViewController {
                 }, onError: nil, onCompleted: nil, onDisposed: nil)
             .disposed(by: disposeBag)
         
+        viewModel.amount.asObservable()
+            .subscribe(onNext: { [weak self] amount in
+                guard let self = self else { return }
+                if amount == 0 {
+                    self.moneyTextField.text = ""
+                }
+                }, onError: nil, onCompleted: nil, onDisposed: nil)
+            .disposed(by: disposeBag)
+
+        viewModel.totalAmount.asObservable()
+            .subscribe(onNext: { [weak self] total in
+                guard let self = self else { return }
+                self.amountTextField.text = total == 0 ? "" : "$ \(total)"
+                }, onError: nil, onCompleted: nil, onDisposed: nil)
+            .disposed(by: disposeBag)
+
+        
         viewModel.transactionsObservable.asObservable()
             .bind(to: tableView.rx.items(cellIdentifier: "Cell", cellType: UITableViewCell.self)) { [weak self] (row, element, cell) in
                 guard self != nil else { return }
                 cell.textLabel?.text = element.userName
-                cell.detailTextLabel?.text = "\(element.amount)"
+                cell.detailTextLabel?.text = "$ \(element.amount)"
             }
             .disposed(by: disposeBag)
     }
@@ -148,7 +185,7 @@ class ExpenseDetailViewController: UIViewController {
     }
     
     @objc private func savePressed() {
-//        viewModel.createTriCount()
+        viewModel.creatNewExpense()
     }
 
     
