@@ -23,16 +23,23 @@ class ExpenseDetailViewController: UIViewController {
     let pickerNameView = UIPickerView()
     let datePicker = UIDatePicker()
     let pickerTransactionView = UIPickerView()
+
+    var viewMode: Bool = false
     var viewModel: ExpenseDetailViewModel!
     var disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupNavigationButton()
         initView()
         bindingView()
+        if viewMode {
+            self.view.isUserInteractionEnabled = false
+            self.viewModel.loadViewModel()
+        } else {
+            setupNavigationButton()
+            viewModel.date.value = Date()
+        }
         bindingViewModel()
-        viewModel.date.value = Date()
     }
     
     private func initView() {
@@ -132,6 +139,13 @@ class ExpenseDetailViewController: UIViewController {
                 }, onError: nil, onCompleted: nil, onDisposed: nil)
             .disposed(by: disposeBag)
         
+        viewModel.expenseTitle.asObservable()
+            .subscribe(onNext: { [weak self] name in
+                guard let self = self else { return }
+                self.titleTextField.text = name
+                }, onError: nil, onCompleted: nil, onDisposed: nil)
+            .disposed(by: disposeBag)
+        
         viewModel.date.asObservable()
             .subscribe(onNext: { [weak self] date in
                 guard let self = self else { return }
@@ -172,9 +186,21 @@ class ExpenseDetailViewController: UIViewController {
         
         viewModel.transactionsObservable.asObservable()
             .bind(to: tableView.rx.items(cellIdentifier: "Cell", cellType: UITableViewCell.self)) { [weak self] (row, element, cell) in
-                guard self != nil else { return }
+                guard let self = self else { return }
                 cell.textLabel?.text = element.userName
-                cell.detailTextLabel?.text = "$ \(element.amount)"
+                if self.viewMode {
+                    if self.viewModel.expense?.paidBy == element.userName {
+                        if let amount = self.viewModel.expense?.amount {
+                        cell.detailTextLabel?.text = "$ \(amount -  element.amount)"
+                        print("---\(amount) --- \(element.amount) ---" + element.userName)
+                        }
+                    } else {
+                        cell.detailTextLabel?.text = "$ \(element.amount * -1)"
+                         print(" --- \(element.amount) ---" + element.userName)
+                    }
+                } else {
+                    cell.detailTextLabel?.text = "$ \(element.amount)"
+                }
             }
             .disposed(by: disposeBag)
     }
@@ -188,7 +214,6 @@ class ExpenseDetailViewController: UIViewController {
         viewModel.creatNewExpense()
     }
 
-    
     /*
     // MARK: - Navigation
 

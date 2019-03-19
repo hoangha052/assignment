@@ -24,15 +24,6 @@ class HomeViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         viewModel.loadTricountData()
-//        testData()
-    }
-    
-    func testData() {
-        let data = viewModel.tricounts.value
-        let acb = data.map({$0.title})
-        
-        print("----")
-        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

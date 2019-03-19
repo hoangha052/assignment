@@ -14,6 +14,7 @@ import RxSwift
 class ExpenseDetailViewModel: NSObject {
     
     var tricount: Tricount?
+    var expense: Expense?
     var isSuccess: Variable<Bool> = Variable(false)
     var expenseTitle = Variable<String>("")
     var paidBy = Variable<String>("")
@@ -68,6 +69,18 @@ class ExpenseDetailViewModel: NSObject {
             tricount?.expenses.append(expense)
             self.isSuccess.value = true
         }
+    }
+    
+    func loadViewModel() {
+        guard let expense = expense else {
+            return
+        }
+        expenseTitle.value = expense.title
+        paidBy.value = expense.paidBy
+        date.value = expense.date
+        totalAmount.value = expense.amount
+        transactions = expense.transactions.compactMap({ $0 })
+        transactionsObservable.value.append(contentsOf: transactions)
     }
     
     private func saveTransaction() {

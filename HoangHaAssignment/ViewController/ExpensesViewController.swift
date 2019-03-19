@@ -59,7 +59,7 @@ class ExpensesViewController: UIViewController {
         tableView.rx.itemSelected
             .subscribe(onNext: { [weak self] indexPath in
                 guard let self = self else { return }
-//                self.performSegue(withIdentifier: "tricountDetailSegue", sender: self.viewModel.tricounts.value[indexPath.row])
+                self.performSegue(withIdentifier: "createExpenseSegue", sender: self.viewModel.expenses.value[indexPath.row])
             })
             .disposed(by: disposeBag)
         
@@ -78,12 +78,16 @@ class ExpensesViewController: UIViewController {
         if segue.identifier == "createExpenseSegue" {
             let viewController = segue.destination as! ExpenseDetailViewController
             viewController.viewModel = ExpenseDetailViewModel()
-            viewController.viewModel.tricount = sender as? Tricount
+            if let tricount = sender as? Tricount {
+                viewController.viewModel.tricount = tricount
+            } else if let expense = sender as? Expense {
+                viewController.viewModel.expense = expense
+                viewController.viewMode = true
+            }
         } else if segue.identifier == "showMembersSegue" {
             let viewController = segue.destination as! MembersViewController
             viewController.viewModel = MemberViewModel()
-            viewController.viewModel.tricount = sender as? Tricount
-            
+            viewController.viewModel.tricount = sender as? Tricount            
         }
     }
 
