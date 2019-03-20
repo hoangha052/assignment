@@ -60,12 +60,10 @@ class BalanceViewModel: NSObject {
             let newTransaction = Transaction.createTransaction(userName: result.userName, amount: result.overBalance)
             positiveAmounts.append(newTransaction)
             positiveAmounts = positiveAmounts.sorted { return $0.amount > $1.amount }
-            print("positive ---\(positiveAmounts.count)")
         } else if result.overBalance < 0 {
             let newTransaction = Transaction.createTransaction(userName: result.userName, amount: result.overBalance)
             nagativeAmounts.append(newTransaction)
             nagativeAmounts = nagativeAmounts.sorted { return $0.amount < $1.amount }
-            print("nagative ---\(nagativeAmounts.count)")
         }
         balances.value.append(result.balance)
         filterBalanceData(nagitiveTransaction: nagativeAmounts, positiveTransaction: positiveAmounts)
@@ -74,10 +72,8 @@ class BalanceViewModel: NSObject {
     func createBalanceItem(nagative: Transaction, positive: Transaction) -> (balance: Balance, overBalance: Double, userName: String) {
         let oweString: String = nagative.userName.uppercased() + " owes " + positive.userName.uppercased()
         if nagative.amount + positive.amount > 0 {
-            print("1 nợ 2 -- \(abs(nagative.amount))")
             return (Balance(title: oweString, amount: abs(nagative.amount)), nagative.amount + positive.amount, positive.userName)
         } else if nagative.amount + positive.amount < 0 {
-            print("1 nợ 2 -- \(abs(positive.amount))")
             return (Balance(title: oweString, amount: positive.amount), nagative.amount + positive.amount, nagative.userName)
         }
         return (Balance(title: oweString, amount: positive.amount), 0, "")

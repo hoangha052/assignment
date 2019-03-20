@@ -194,11 +194,9 @@ class ExpenseDetailViewController: UIViewController {
                     if self.viewModel.expense?.paidBy == element.userName {
                         if let amount = self.viewModel.expense?.amount {
                         cell.detailTextLabel?.text = "$\(amount -  element.amount)"
-                        print("---\(amount) --- \(element.amount) ---" + element.userName)
                         }
                     } else {
                         cell.detailTextLabel?.text = "$\(element.amount * -1)"
-                         print(" --- \(element.amount) ---" + element.userName)
                     }
                 } else {
                     cell.detailTextLabel?.text = "$\(element.amount)"
@@ -207,7 +205,6 @@ class ExpenseDetailViewController: UIViewController {
             .disposed(by: disposeBag)
     }
     
-
     private func setupNavigationButton() {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(savePressed))
     }
