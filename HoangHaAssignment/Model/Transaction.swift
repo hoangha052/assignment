@@ -13,4 +13,15 @@ import RealmSwift
 class Transaction: Object {
     dynamic var userName: String = ""
     dynamic var amount: Double = 0
+    
+    static func getTotalAmount(transactions: [Transaction]) -> Double {
+        return transactions.map({$0.amount}).reduce(0, +)
+    }
+    
+    static func createTransaction(userName: String, amount: Double) -> Transaction {
+        let transaction = Transaction()
+        transaction.userName = userName
+        transaction.amount = amount
+        return transaction
+    }
 }

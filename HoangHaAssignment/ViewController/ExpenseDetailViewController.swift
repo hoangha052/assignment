@@ -135,6 +135,8 @@ class ExpenseDetailViewController: UIViewController {
                 guard let self = self else { return }
                 if success {
                     self.navigationController?.popViewController(animated: true)
+                } else {
+                    self.showError()
                 }
                 }, onError: nil, onCompleted: nil, onDisposed: nil)
             .disposed(by: disposeBag)
@@ -191,15 +193,15 @@ class ExpenseDetailViewController: UIViewController {
                 if self.viewMode {
                     if self.viewModel.expense?.paidBy == element.userName {
                         if let amount = self.viewModel.expense?.amount {
-                        cell.detailTextLabel?.text = "$ \(amount -  element.amount)"
+                        cell.detailTextLabel?.text = "$\(amount -  element.amount)"
                         print("---\(amount) --- \(element.amount) ---" + element.userName)
                         }
                     } else {
-                        cell.detailTextLabel?.text = "$ \(element.amount * -1)"
+                        cell.detailTextLabel?.text = "$\(element.amount * -1)"
                          print(" --- \(element.amount) ---" + element.userName)
                     }
                 } else {
-                    cell.detailTextLabel?.text = "$ \(element.amount)"
+                    cell.detailTextLabel?.text = "$\(element.amount)"
                 }
             }
             .disposed(by: disposeBag)
@@ -213,15 +215,10 @@ class ExpenseDetailViewController: UIViewController {
     @objc private func savePressed() {
         viewModel.creatNewExpense()
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    private func showError() {
+        let alert = UIAlertController(title: "Error!", message: "Please input full data", preferredStyle: .alert)
+         alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
-    */
-
 }

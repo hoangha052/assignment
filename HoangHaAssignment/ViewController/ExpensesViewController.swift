@@ -52,7 +52,7 @@ class ExpensesViewController: UIViewController {
             .bind(to: tableView.rx.items(cellIdentifier: "Cell", cellType: UITableViewCell.self)) { [weak self] (row, element, cell) in
                 guard self != nil else { return }
                 cell.textLabel?.text = element.title
-                cell.detailTextLabel?.text = "PaidBy " + element.paidBy  + "-\(element.amount)"
+                cell.detailTextLabel?.text = "Paid By: " + element.paidBy  + " with total $ \(element.amount)"
             }
             .disposed(by: disposeBag)
         
@@ -88,6 +88,10 @@ class ExpensesViewController: UIViewController {
             let viewController = segue.destination as! MembersViewController
             viewController.viewModel = MemberViewModel()
             viewController.viewModel.tricount = sender as? Tricount            
+        } else if segue.identifier == "showBalanceSegue" {
+            let viewController = segue.destination as! BalancesViewController
+            viewController.viewModel = BalanceViewModel()
+            viewController.viewModel.tricount = sender as? Tricount
         }
     }
 

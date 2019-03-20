@@ -12,7 +12,7 @@
 		674CB977223D5CED00293540 /* BalancesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 674CB976223D5CED00293540 /* BalancesViewController.swift */; };
 		674CB979223D5D1F00293540 /* CreateTriCountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 674CB978223D5D1F00293540 /* CreateTriCountViewController.swift */; };
 		674CB97B223D5D2F00293540 /* MembersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 674CB97A223D5D2F00293540 /* MembersViewController.swift */; };
-		674CB97D223D5D4100293540 /* MemberDairyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 674CB97C223D5D4100293540 /* MemberDairyViewController.swift */; };
+		674CB97D223D5D4100293540 /* MemberDiaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 674CB97C223D5D4100293540 /* MemberDiaryViewController.swift */; };
 		6798433F223D3EEB006BC4B4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6798433E223D3EEB006BC4B4 /* AppDelegate.swift */; };
 		67984341223D3EEB006BC4B4 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67984340223D3EEB006BC4B4 /* HomeViewController.swift */; };
 		67984344223D3EEB006BC4B4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67984342223D3EEB006BC4B4 /* Main.storyboard */; };
@@ -25,7 +25,7 @@
 		67E405B0223E22E20047D61C /* BalanceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E405AF223E22E20047D61C /* BalanceViewModel.swift */; };
 		67E405B2223E23010047D61C /* CreateTricountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E405B1223E23010047D61C /* CreateTricountViewModel.swift */; };
 		67E405B4223E23160047D61C /* MemberViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E405B3223E23160047D61C /* MemberViewModel.swift */; };
-		67E405B6223E23270047D61C /* MemberDairyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E405B5223E23270047D61C /* MemberDairyViewModel.swift */; };
+		67E405B6223E23270047D61C /* MemberDiaryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E405B5223E23270047D61C /* MemberDiaryViewModel.swift */; };
 		67E405B9223E2BEB0047D61C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E405B8223E2BEB0047D61C /* User.swift */; };
 		67E405BA223E2BEB0047D61C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E405B8223E2BEB0047D61C /* User.swift */; };
 		67E405BC223E2DD20047D61C /* Tricount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E405BB223E2DD20047D61C /* Tricount.swift */; };
@@ -57,7 +57,7 @@
 		674CB976223D5CED00293540 /* BalancesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalancesViewController.swift; sourceTree = "<group>"; };
 		674CB978223D5D1F00293540 /* CreateTriCountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTriCountViewController.swift; sourceTree = "<group>"; };
 		674CB97A223D5D2F00293540 /* MembersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MembersViewController.swift; sourceTree = "<group>"; };
-		674CB97C223D5D4100293540 /* MemberDairyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberDairyViewController.swift; sourceTree = "<group>"; };
+		674CB97C223D5D4100293540 /* MemberDiaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberDiaryViewController.swift; sourceTree = "<group>"; };
 		6798433B223D3EEB006BC4B4 /* HoangHaAssignment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HoangHaAssignment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6798433E223D3EEB006BC4B4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		67984340223D3EEB006BC4B4 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -74,7 +74,7 @@
 		67E405AF223E22E20047D61C /* BalanceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceViewModel.swift; sourceTree = "<group>"; };
 		67E405B1223E23010047D61C /* CreateTricountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTricountViewModel.swift; sourceTree = "<group>"; };
 		67E405B3223E23160047D61C /* MemberViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberViewModel.swift; sourceTree = "<group>"; };
-		67E405B5223E23270047D61C /* MemberDairyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberDairyViewModel.swift; sourceTree = "<group>"; };
+		67E405B5223E23270047D61C /* MemberDiaryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberDiaryViewModel.swift; sourceTree = "<group>"; };
 		67E405B8223E2BEB0047D61C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		67E405BB223E2DD20047D61C /* Tricount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tricount.swift; sourceTree = "<group>"; };
 		67E405BE223E2E030047D61C /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
@@ -161,7 +161,7 @@
 				674CB976223D5CED00293540 /* BalancesViewController.swift */,
 				674CB978223D5D1F00293540 /* CreateTriCountViewController.swift */,
 				674CB97A223D5D2F00293540 /* MembersViewController.swift */,
-				674CB97C223D5D4100293540 /* MemberDairyViewController.swift */,
+				674CB97C223D5D4100293540 /* MemberDiaryViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -175,7 +175,7 @@
 				67E405AF223E22E20047D61C /* BalanceViewModel.swift */,
 				67E405B1223E23010047D61C /* CreateTricountViewModel.swift */,
 				67E405B3223E23160047D61C /* MemberViewModel.swift */,
-				67E405B5223E23270047D61C /* MemberDairyViewModel.swift */,
+				67E405B5223E23270047D61C /* MemberDiaryViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -417,7 +417,7 @@
 				674CB977223D5CED00293540 /* BalancesViewController.swift in Sources */,
 				67E405ED2240DA9D0047D61C /* DateExtension.swift in Sources */,
 				67E405B2223E23010047D61C /* CreateTricountViewModel.swift in Sources */,
-				67E405B6223E23270047D61C /* MemberDairyViewModel.swift in Sources */,
+				67E405B6223E23270047D61C /* MemberDiaryViewModel.swift in Sources */,
 				67E405B4223E23160047D61C /* MemberViewModel.swift in Sources */,
 				67E405B9223E2BEB0047D61C /* User.swift in Sources */,
 				67E405AA223E22770047D61C /* HomeViewModel.swift in Sources */,
@@ -425,7 +425,7 @@
 				67984341223D3EEB006BC4B4 /* HomeViewController.swift in Sources */,
 				67E405BF223E2E030047D61C /* Transaction.swift in Sources */,
 				67E405AE223E22CD0047D61C /* ExpenseDetailViewModel.swift in Sources */,
-				674CB97D223D5D4100293540 /* MemberDairyViewController.swift in Sources */,
+				674CB97D223D5D4100293540 /* MemberDiaryViewController.swift in Sources */,
 				6798433F223D3EEB006BC4B4 /* AppDelegate.swift in Sources */,
 				67E405B0223E22E20047D61C /* BalanceViewModel.swift in Sources */,
 				674CB97B223D5D2F00293540 /* MembersViewController.swift in Sources */,

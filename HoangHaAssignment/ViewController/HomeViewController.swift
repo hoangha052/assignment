@@ -20,7 +20,7 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         bindingViewModel()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         viewModel.loadTricountData()

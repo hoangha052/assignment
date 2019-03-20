@@ -54,7 +54,10 @@ class ExpenseDetailViewModel: NSObject {
     }
     
     func creatNewExpense() {
-        guard !expenseTitle.value.isEmpty, totalAmount.value != 0, !paidBy.value.isEmpty else { return }
+        guard !expenseTitle.value.isEmpty, totalAmount.value != 0, !paidBy.value.isEmpty else {
+            isSuccess.value = false
+            return
+        }
         saveTransaction()
         let expense = Expense()
         expense.title = expenseTitle.value
@@ -86,7 +89,7 @@ class ExpenseDetailViewModel: NSObject {
     private func saveTransaction() {
         for item in transactions {
             if item.userName == paidBy.value {
-                item.amount = getTotalAmount() - item.amount
+                item.amount = totalAmount.value - item.amount
             } else {
                 item.amount = item.amount * (-1)
             }
@@ -98,7 +101,7 @@ class ExpenseDetailViewModel: NSObject {
     }
     
     func getTotalAmount() -> Double {
-        return transactions.map({$0.amount}).reduce(0, +)
+        return Transaction.getTotalAmount(transactions: transactions)
     }
     
     func getMemberList() -> [User] {
