@@ -14,8 +14,9 @@ import RealmSwift
 class HomeViewModel: NSObject {
 
     var tricounts = Variable<[Tricount]>([])
-    
+    var realm = try! Realm()
+
     func loadTricountData() {
-        tricounts.value = Tricount.loadData()
+        tricounts.value = Tricount.loadData(realm: realm)
     }
 }

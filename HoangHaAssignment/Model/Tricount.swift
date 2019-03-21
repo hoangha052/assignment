@@ -35,8 +35,8 @@ class Tricount: Object, PrimaryKeyAware {
     let members = List<User>()
     let expenses = List<Expense>()
     
-    static func loadData() -> [Tricount] {
-        let realm = try! Realm()
+    static func loadData(realm: Realm) -> [Tricount] {
+//        let realm = try! Realm()
         realm.refresh()
         return realm.objects(self).compactMap({ $0 })
     }

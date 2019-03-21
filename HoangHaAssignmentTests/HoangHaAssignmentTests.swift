@@ -63,6 +63,14 @@ class HoangHaAssignmentTests: XCTestCase {
         XCTAssertEqual(try! createTricountViewModel.isSuccess.asObservable().toBlocking().first(), true)
     }
 
+    func testCreateTripCountSaveDataSuccess() {
+        createTricountViewModel.userName.value = "Hoang Ha4"
+        createTricountViewModel.addNewUser()
+        createTricountViewModel.tricountTitle.value = "TEST3"
+        createTricountViewModel.createTriCount()
+        let tricount = Tricount.loadData(realm: createTricountViewModel.realm)
+        XCTAssertEqual(tricount.first?.title, "TEST3")
+    }
     
     func testExample() {
         // This is an example of a functional test case.
