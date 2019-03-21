@@ -17,6 +17,7 @@ class CreateTricountViewModel: NSObject{
     var tricountTitle = Variable<String>("")
     var userName = Variable<String>("")
     var members = Variable<[User]>([])
+    var realm: Realm = try! Realm()
     
     lazy private(set) var userNameIsValid: Observable<Bool> = self.userName
         .asObservable()
@@ -29,9 +30,17 @@ class CreateTricountViewModel: NSObject{
     }
     
     func addNewUser() {
+        guard !checkUserDuplicateName(name: userName.value) else { return }
         let newUser = User(value: ["name": userName.value])
         members.value.append(newUser)
         userName.value = ""
+    }
+    
+    private func checkUserDuplicateName(name: String) -> Bool {
+        let user = members.value.filter { (user) -> Bool in
+            return user.name == name
+        }
+        return user.count > 0
     }
     
     func userNameForItem(at indexPath: IndexPath) -> String {
@@ -44,9 +53,9 @@ class CreateTricountViewModel: NSObject{
         let newTricount = Tricount()
         newTricount.title = tricountTitle.value
         newTricount.members.append(objectsIn: members.value)
-        let realm = try! Realm()
-        try! realm.write {
-            realm.add(newTricount)
+        
+        let storage = RealmStorage<Tricount>()
+        storage.save([newTricount], realm: realm) {
             self.isSuccess.value = true
         }
     }

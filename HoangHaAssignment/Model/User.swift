@@ -17,3 +17,4 @@ class User: Object {
         return "name"
     }
 }
+

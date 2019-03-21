@@ -24,6 +24,7 @@ class ExpenseDetailViewModel: NSObject {
     var transactionUserName = Variable<String>("")
     var amount = Variable<Double>(0)
     var transactionsObservable = Variable<[Transaction]>([])
+    var realm = try! Realm()
     
     func addNewTransaction() {
         var transaction: Transaction
@@ -66,9 +67,8 @@ class ExpenseDetailViewModel: NSObject {
         expense.paidBy = paidBy.value
         expense.transactions.append(objectsIn: transactions)
         
-        let realm = try! Realm()
-        try! realm.write {
-            realm.add(expense)
+        let storage = RealmStorage<Expense>()
+        storage.save([expense], realm: self.realm) {
             tricount?.expenses.append(expense)
             self.isSuccess.value = true
         }

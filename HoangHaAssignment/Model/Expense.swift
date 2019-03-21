@@ -10,10 +10,15 @@ import UIKit
 import RealmSwift
 
 @objcMembers
-class Expense: Object {
+class Expense: Object, PrimaryKeyAware {
     dynamic var title: String = ""
     dynamic var amount: Double = 0
     dynamic var date: Date = Date()
     dynamic var paidBy: String = ""
     dynamic var transactions = List<Transaction>()
+    
+    override static func primaryKey() -> String? {
+        return "title"
+    }
 }
+

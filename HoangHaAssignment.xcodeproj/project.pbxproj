@@ -27,15 +27,10 @@
 		67E405B4223E23160047D61C /* MemberViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E405B3223E23160047D61C /* MemberViewModel.swift */; };
 		67E405B6223E23270047D61C /* MemberDiaryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E405B5223E23270047D61C /* MemberDiaryViewModel.swift */; };
 		67E405B9223E2BEB0047D61C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E405B8223E2BEB0047D61C /* User.swift */; };
-		67E405BA223E2BEB0047D61C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E405B8223E2BEB0047D61C /* User.swift */; };
 		67E405BC223E2DD20047D61C /* Tricount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E405BB223E2DD20047D61C /* Tricount.swift */; };
-		67E405BD223E2DD20047D61C /* Tricount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E405BB223E2DD20047D61C /* Tricount.swift */; };
 		67E405BF223E2E030047D61C /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E405BE223E2E030047D61C /* Transaction.swift */; };
-		67E405C0223E2E030047D61C /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E405BE223E2E030047D61C /* Transaction.swift */; };
 		67E405C2223E2E180047D61C /* Expense.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E405C1223E2E180047D61C /* Expense.swift */; };
-		67E405C3223E2E180047D61C /* Expense.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E405C1223E2E180047D61C /* Expense.swift */; };
 		67E405ED2240DA9D0047D61C /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E405EC2240DA9D0047D61C /* DateExtension.swift */; };
-		67E405EE2240DA9D0047D61C /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E405EC2240DA9D0047D61C /* DateExtension.swift */; };
 		C2EEB9AAC8395958895FECBA /* Pods_HoangHaAssignmentTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEEB01A0F301BAAFD01F9744 /* Pods_HoangHaAssignmentTests.framework */; };
 		CFF3D5E16BD4488F427F9E73 /* Pods_HoangHaAssignment.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD33F129D5B72BF51D8EBC32 /* Pods_HoangHaAssignment.framework */; };
 /* End PBXBuildFile section */
@@ -441,12 +436,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				67E405BD223E2DD20047D61C /* Tricount.swift in Sources */,
-				67E405EE2240DA9D0047D61C /* DateExtension.swift in Sources */,
-				67E405BA223E2BEB0047D61C /* User.swift in Sources */,
-				67E405C0223E2E030047D61C /* Transaction.swift in Sources */,
 				67984354223D3EEC006BC4B4 /* HoangHaAssignmentTests.swift in Sources */,
-				67E405C3223E2E180047D61C /* Expense.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
