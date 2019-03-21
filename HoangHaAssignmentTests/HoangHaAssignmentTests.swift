@@ -17,20 +17,15 @@ import RealmSwift
 
 class HoangHaAssignmentTests: XCTestCase {
 
-    var homeViewModel: HomeViewModel!
     var createTricountViewModel: CreateTricountViewModel!
-    var scheduler: TestScheduler!
-    var disposeBag: DisposeBag!
+    var realm: Realm!
     
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
-        homeViewModel = HomeViewModel()
         createTricountViewModel = CreateTricountViewModel()
-        scheduler = TestScheduler(initialClock: 0)
-        disposeBag = DisposeBag()
         
         Realm.Configuration.defaultConfiguration.inMemoryIdentifier = self.name
-        let realm = try! Realm()
+        realm = try! Realm()
         createTricountViewModel.realm = realm
 
     }
@@ -46,7 +41,7 @@ class HoangHaAssignmentTests: XCTestCase {
         let testUser: User = User(value: ["name": "Hoang Ha"])
         createTricountViewModel.userName.value = "Hoang Ha"
         createTricountViewModel.addNewUser()
-        do{
+        do {
             let result = try createTricountViewModel.members.asObservable().toBlocking().first()
             XCTAssertEqual(result?.first?.name, testUser.name)
         } catch {
@@ -54,7 +49,7 @@ class HoangHaAssignmentTests: XCTestCase {
         }
     }
     
-    func testCreateTripCount() {
+    func testCreateTriCount() {
         createTricountViewModel.isSuccess.value = false
         createTricountViewModel.userName.value = "Hoang Ha3"
         createTricountViewModel.addNewUser()
@@ -63,25 +58,81 @@ class HoangHaAssignmentTests: XCTestCase {
         XCTAssertEqual(try! createTricountViewModel.isSuccess.asObservable().toBlocking().first(), true)
     }
 
-    func testCreateTripCountSaveDataSuccess() {
+    func testCreateTriCountSaveDataSuccess() {
         createTricountViewModel.userName.value = "Hoang Ha4"
         createTricountViewModel.addNewUser()
         createTricountViewModel.tricountTitle.value = "TEST3"
         createTricountViewModel.createTriCount()
-        let tricount = Tricount.loadData(realm: createTricountViewModel.realm)
+        let tricount = Tricount.loadData(realm: self.realm)
         XCTAssertEqual(tricount.first?.title, "TEST3")
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testLoadTricountMemberFormViewModel() {
+        let tricount = Tricount()
+        tricount.title = "Member ViewModel"
+        tricount.members.append(objectsIn: [User(value: ["name" : "Ha"]),
+                                            User(value: ["name" : "Huyen"]),
+                                            User(value: ["name": "Van"]),
+                                            User(value: ["name": "Hoang"])])
+        let storage = RealmStorage<Tricount>()
+        storage.save([tricount], realm: realm) {
+        }
+        let memberViewModel = MemberViewModel()
+        memberViewModel.tricount = Tricount.loadData(realm: self.realm).first
+        memberViewModel.loadMembers()
+        do {
+            let result = try memberViewModel.members.asObservable().toBlocking().first()
+            XCTAssertEqual(result?.last?.name, "Hoang")
+        } catch {
+            XCTFail(error.localizedDescription)
+        }
     }
-
+    
+    func testLoadTricountMembersFormDataBase() {
+        let newTricount = Tricount()
+        newTricount.title = "Member Realm"
+        newTricount.members.append(objectsIn: [User(value: ["name" : "Ha"]),
+                                   User(value: ["name" : "Huyen"]), User(value: ["name": "Van"])])
+        let storage = RealmStorage<Tricount>()
+        storage.save([newTricount], realm: realm) {
+        }
+        
+        let tricount = Tricount.loadData(realm: self.realm)
+        XCTAssertEqual(tricount.first?.members.count, 3)
+    }
+    
+    
+    func testGetTotalAmount() {
+        let viewModel = ExpenseDetailViewModel()
+        let transaction1 = Transaction.createTransaction(userName: "transaction1", amount: 10)
+        let transaction2 = Transaction.createTransaction(userName: "transaction2", amount: 30)
+        let transaction3 = Transaction.createTransaction(userName: "transaction3", amount: 50)
+        let transaction4 = Transaction.createTransaction(userName: "transaction4", amount: 70)
+        viewModel.transactions = [transaction1, transaction2, transaction3, transaction4]
+        XCTAssertEqual(viewModel.getTotalAmount(), 160)
+    }
+    
+    
+    func testCreateExpense() {
+        let viewModel = ExpenseDetailViewModel()
+        viewModel.isSuccess.value = false
+        viewModel.realm = self.realm
+        let transaction1 = Transaction.createTransaction(userName: "transaction1", amount: 10)
+        let transaction2 = Transaction.createTransaction(userName: "transaction2", amount: 30)
+        let transaction3 = Transaction.createTransaction(userName: "transaction3", amount: 50)
+        let transaction4 = Transaction.createTransaction(userName: "transaction4", amount: 70)
+        viewModel.transactions = [transaction1, transaction2, transaction3, transaction4]
+        viewModel.paidBy.value = "Hoang Ha"
+        viewModel.totalAmount.value = viewModel.getTotalAmount()
+        viewModel.expenseTitle.value = "Create Expense"
+        viewModel.creatNewExpense()
+        XCTAssertEqual(try! viewModel.isSuccess.asObservable().toBlocking().first(), true)
+    }
+    
     func testPerformanceExample() {
         // This is an example of a performance test case.
         self.measure {
-            // Put the code you want to measure the time of here.
         }
     }
-
+    
 }
