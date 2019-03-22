@@ -42,6 +42,11 @@
                                     <constraint firstAttribute="height" constant="30" id="lXO-KV-q43"/>
                                 </constraints>
                                 <state key="normal" title="NewGroup"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="15"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <segue destination="cuc-Ev-xrc" kind="push" id="4YS-BH-AXh"/>
                                 </connections>
@@ -158,6 +163,11 @@
                                     <constraint firstAttribute="height" constant="30" id="o0c-2K-NME"/>
                                 </constraints>
                                 <state key="normal" title="Members"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="15"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BgY-cb-WwF">
                                 <rect key="frame" x="206" y="587" width="119" height="30"/>
@@ -167,6 +177,11 @@
                                     <constraint firstAttribute="height" constant="30" id="p9D-Os-5zX"/>
                                 </constraints>
                                 <state key="normal" title="Balances"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="15"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="R3F-0n-hTW">
                                 <rect key="frame" x="0.0" y="64" width="375" height="503"/>
@@ -224,7 +239,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K3U-7a-2jO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="342" y="-597"/>
+            <point key="canvasLocation" x="510" y="-269"/>
         </scene>
         <!--Balances-->
         <scene sceneID="EH0-b9-Sas">
